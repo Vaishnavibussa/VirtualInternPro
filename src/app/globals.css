@@ -1,0 +1,175 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --background: 150 20% 97%;
+    --foreground: 224 71% 4%; /* #111827 */
+    --card: 0 0% 100%;
+    --card-foreground: 224 71% 4%;
+    --popover: 0 0% 100%;
+    --popover-foreground: 224 71% 4%;
+    --primary: 240 10% 3.9%; /* #000000 */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 145 63% 49%; /* #22C55E */
+    --secondary-foreground: 210 40% 98%;
+    --accent: 145 63% 49%;
+    --accent-foreground: 224 71% 4%;
+    --destructive: 0 84.2% 60.2%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 220 13% 86%;
+    --input: 220 13% 86%;
+    --ring: 222 83% 53%;
+    --chart-1: 222 83% 53%;
+    --chart-2: 145 63% 46%;
+    --chart-3: 45 93% 53%;
+    --chart-4: 280 65% 60%;
+    --chart-5: 340 75% 55%;
+
+    --toggle-border-color: #8c8c8c;
+    --toggle-shadow-color: #999;
+    --toggle-bg-shadow1: #ccc;
+    --toggle-bg-shadow2: #ddd;
+    --toggle-bg-shadow3: #fff;
+    --toggle-active-text: hsl(var(--primary));
+    --toggle-inactive-text: hsl(var(--muted-foreground));
+    --radius: 1rem;
+  }
+
+  .dark {
+    --background: 222 47% 11%; /* #0F172A */
+    --foreground: 210 40% 98%;
+    --card: 210 40% 98% / 0.05;
+    --card-foreground: 210 40% 98%;
+    --popover: 222 47% 11%;
+    --popover-foreground: 210 40% 98%;
+    --primary: 240 10% 3.9%; /* #000000 */
+    --primary-foreground: 210 40% 98%;
+    --secondary: 240 10% 3.9%; /* #000000 */
+    --secondary-foreground: 210 40% 98%;
+    --muted: 217 32% 17%;
+    --muted-foreground: 215 20% 65%;
+    --accent: 145 63% 49%;
+    --accent-foreground: 210 40% 9.8%;
+    --destructive: 0 62% 30%;
+    --destructive-foreground: 0 0% 98%;
+    --border: 217 32% 27%;
+    --input: 217 32% 27%;
+    --ring: 212 72% 51%;
+
+    --toggle-border-color: hsl(var(--border));
+    --toggle-shadow-color: hsl(var(--border));
+    --toggle-bg-shadow1: #000;
+    --toggle-bg-shadow2: #0F172A;
+    --toggle-bg-shadow3: #222;
+    --toggle-active-text: hsl(var(--primary));
+    --toggle-inactive-text: hsl(var(--muted-foreground));
+    --radius: 1rem;
+  }
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+  body {
+    @apply bg-background text-foreground;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+
+  .dark body {
+    background: hsl(var(--background));
+  }
+
+  .light body {
+    background-image: linear-gradient(135deg, hsl(var(--background)) 0%, hsl(150 20% 97%) 100%);
+  }
+
+  main {
+    z-index: 10;
+  }
+
+  header {
+    z-index: 50;
+  }
+}
+
+@layer components {
+  /* =====================================================
+    Theme Toggle Styles
+   ===================================================== */
+  .toggle {
+    display: block;
+    text-align: center;
+    user-select: none;
+  }
+  .toggle--checkbox {
+    display: none;
+  }
+  .toggle--btn {
+    display: block;
+    margin: 0 auto;
+    font-size: 0.8rem;
+    transition: all 350ms ease-in;
+  }
+  .toggle--btn:hover {
+    cursor: pointer;
+  }
+  .toggle--btn,
+  .toggle--checkbox {
+    transition: all 250ms ease-in;
+  }
+  .toggle--btn .toggle-icon {
+    transition: all 250ms ease-in;
+    pointer-events: none;
+  }
+  
+  .toggle--text .toggle--btn {
+    position: relative;
+    width: 100px;
+    height: 40px;
+    border-radius: 40px;
+    border: 1px solid var(--toggle-border-color);
+    box-shadow:
+      -6px 6px 12px var(--toggle-bg-shadow1),
+       6px -6px 12px var(--toggle-bg-shadow2),
+       inset -2px 2px 4px rgba(0,0,0,0.2),
+       inset 2px -2px 4px rgba(255,255,255,0.8);
+  }
+  
+  .toggle--text .toggle-icon {
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    width: 50%;
+    text-align: center;
+  }
+  
+  .toggle--text .sun {
+    left: 0;
+    color: var(--toggle-inactive-text);
+  }
+  
+  .toggle--text .moon {
+    right: 0;
+    color: var(--toggle-active-text);
+  }
+  
+  .toggle--checkbox:checked + .toggle--btn .sun {
+    color: var(--toggle-active-text);
+  }
+  
+  .toggle--checkbox:checked + .toggle--btn .moon {
+    color: var(--toggle-inactive-text);
+  }
+
+  .toggle--checkbox:checked + .toggle--btn {
+    box-shadow:
+      -6px 6px 12px var(--toggle-bg-shadow2),
+       6px -6px 12px var(--toggle-bg-shadow1),
+       inset -2px 2px 4px rgba(255,255,255,0.8),
+       inset 2px -2px 4px rgba(0,0,0,0.2);
+  }
+}
